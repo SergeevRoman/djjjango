@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Заголовок {% endblock title%}</title>
+</head>
+<body>
+    <h1>{% block header %} {% endblock header %}</h1>
+    <div>{% block content %} {% endblock content %}</div>
+    <div>{% now "H:i l j-F-Y" %}</div>
+    <div>Подвал страницы</div>
+</body>
+</html>
