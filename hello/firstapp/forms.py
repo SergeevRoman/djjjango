@@ -13,3 +13,4 @@ class UserForm(forms.Form):
     uuid_text = forms.UUIDField(label="Введите UUID")
     combo_text = forms.ComboField(label="Введите URL", fields=[forms.URLField(), forms.CharField(max_length=5)])
     file_path = forms.FilePathField(label="Выберите файл", path="C:/Users/sergeevra/Downloads/QAGuru/", recursive=True)
+    #страница 197
