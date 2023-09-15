@@ -21,11 +21,14 @@ class UserForm(forms.Form):
     date_time = forms.DateTimeField(label='Введите дату и время')
     time_data = forms.DurationField(label='Введите промежуток времени')
     DateTime = forms.SplitDateTimeField(label='Введите дату и время')
-    dec_digit = forms.DecimalField(label='Введите десятичное число',  decimal_places=3)
+    dec_digit = forms.DecimalField(label='Введите десятичное число', max_value = 100, decimal_places=3)
     float_num = forms.FloatField(label='Введите число', help_text = 'Введите число с плавающей запятой')
     ling = forms.ChoiceField(label='Выберите язык', choices = ((1, "Английский"), (2, "Немецкий"), (3, "Французский")))
     city = forms.TypedChoiceField(label='Выберите город', empty_value=None, choices = ((1, "Москва"), (2, "Воронеж"), (3, "Сургут")))
     country = forms.MultipleChoiceField(label='Выберите страны', choices=((1,"Англия"),(2,"Германия"),(3,"Испания"),(4,"Турция")))
     multi_city = forms.TypedMultipleChoiceField(label='Выберите города', empty_value=None, choices=((1, "Москва"), (2, "Воронеж"), (3, "Сургут"), (4, "Орел")))
-    field_order=["age", "name"]
-    #страница 215
+    field_order=["age", "name"] # задает порядок отобрадения полей на форме
+    #страница 224
+class NameForm(forms.Form):
+    name = forms.CharField(label="Имя пользователя", max_length=5, min_length=2,
+                           help_text="не менее 2 символов и не более 5")

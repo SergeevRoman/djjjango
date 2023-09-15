@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import *
-from .forms import UserForm
+from .forms import UserForm, NameForm
 from django.template.response import TemplateResponse
 
 # Create your views here.
@@ -10,12 +10,19 @@ from django.template.response import TemplateResponse
 
 def index(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        age = request.POST.get("age")
-        output = "<h2>Пользователь</h2><h3>Имя - {0}, Возраст - {1}</h3>".format(name, age)
-        return HttpResponse(output)
+        userform = NameForm(request.POST)
+        if userform.is_valid():
+            name = userform.cleaned_data["name"]
+            return HttpResponse("<h2>Имя введено корректно - {0}</h2>".format(name))
+        else:
+            return HttpResponse("Ошибка ввода данных")
+
+        #name = request.POST.get("name")
+        #age = request.POST.get("age")
+        #output = "<h2>Пользователь</h2><h3>Имя - {0}, Возраст - {1}</h3>".format(name, age)
+        #return HttpResponse(output)
     else:
-        userform = UserForm()
+        userform = NameForm()
         return render(request, "firstapp/index.html", {"form":userform})
 
 def personal_data(request):
